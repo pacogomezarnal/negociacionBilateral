@@ -13,6 +13,7 @@ public class pacoAgent extends UPVAgent{
 	double RU;
 	//Almacenamiento de la oferta más ventajosa para mí
 	Bid best_offer_for_me=null;
+	
 	//Calculo de las diferencias de ofertas del contrario
 	double last_offer_S=-1;
 	double just_offer=-1;
@@ -22,6 +23,13 @@ public class pacoAgent extends UPVAgent{
 	double incr_part=1;
 	//Tiempo de decision final
 	double final_dec=0.95;
+	
+	//Ventana de analisis de tiempos
+	double window_time=0.05;
+	double window_init=0;
+	double window_end=0;
+	Vector<double> time;
+	Vector<double> offersS;
 	
 	public void initialize() {
 		last_moment_offer = null;
@@ -34,6 +42,10 @@ public class pacoAgent extends UPVAgent{
 	public boolean acceptOffer(Bid offer) {
 		
 		update();
+		//Almacenamos el comportamiento en la ventana
+		if((window_end-window_init)<window_time) {
+			
+		}
 		//Cambiamos las estrategias al pasar determinados intervalos de tiempo
 		if(getTime()>(incr_part*incr)) {
 			System.out.println(">>>ACUMULADO>>>>"+offers_acumulated);
